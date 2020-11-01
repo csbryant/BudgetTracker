@@ -1,6 +1,7 @@
 {
     "name": "Budget Tracker",
     "short_name": "Budget Tracker",
+    "description": "Track your expenses so that you can stick to a budget!",
     "icons": [
       {
         "src": "assets/images/icons/icon-72x72.png",
