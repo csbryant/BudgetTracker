@@ -1,32 +1,22 @@
-
-const CACHE_NAME = "static-cache-v2";
-const DATA_CACHE_NAME = "data-cache-v1";
-
-const iconSizes = ["72", "96", "128", "144", "152", "192", "384", "512"];
-const iconFiles = iconSizes.map(
-  (size) => `/assets/images/icons/icon-${size}x${size}.png`
-);
-
-const staticFilesToPreCache = [
+const filesToCache = [
   "/",
-  "/index.js",
-  "/style.css",
-  "/db.js",
-  "/service-worker.js",
-  "/icons/icon-192x192.png",
-  "/icons/icon-512x512.png",
-  "/favicon.ico",
+  "index.jtml",
+  "index.js",
+  "styles.css",
+  "db.js",
   "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
   "/manifest.webmanifest",
   "https://cdn.jsdelivr.net/npm/chart.js@2.8.0"
-].concat(iconFiles);
+];
 
+const CACHE_NAME = "static-cache-v2";
+const DATA_CACHE_NAME = "data-cache-v1";
 
 self.addEventListener("install", function (evt) {
   evt.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       console.log("Your files were pre-cached successfully!");
-      return cache.addAll(staticFilesToPreCache);
+      return cache.addAll(filesToCache);
     })
   );
 
@@ -46,7 +36,6 @@ self.addEventListener("activate", function (evt) {
       );
     })
   );
-
   self.clients.claim();
 });
 
